@@ -1,0 +1,49 @@
+
+<Access id="recordingNigra12h945-1" saveInterval="0.01ms">
+
+	<CellLocation id="pa0" path="100" rankBy="radius" sequenceIndex="0"/>
+	<CellLocation id="pa1" path="100" rankBy="radius" sequenceIndex="1"/>
+	<CellLocation id="pa2" path="100" rankBy="radius" sequenceIndex="2"/>
+	
+	
+	<CellLocation id="pb0" path="200" rankBy="radius" sequenceIndex="0"/>
+	<CellLocation id="pb1" path="200" rankBy="radius" sequenceIndex="1"/>
+	<CellLocation id="pb2" path="200" rankBy="radius" sequenceIndex="2"/>
+
+
+	<CellLocation id="pc0" path="300" rankBy="radius" sequenceIndex="0"/>
+	<CellLocation id="pc1" path="300" rankBy="radius" sequenceIndex="1"/>
+	<CellLocation id="pc2" path="300" rankBy="radius" sequenceIndex="2"/>
+	<CellLocation id="pc3" path="300" rankBy="radius" sequenceIndex="3"/>
+
+	<CellLocation id="pd0" path="400" rankBy="radius" sequenceIndex="0"/>
+	<CellLocation id="pd1" path="400" rankBy="radius" sequenceIndex="1"/>
+	<CellLocation id="pd2" path="400" rankBy="radius" sequenceIndex="2"/>
+	<CellLocation id="pd3" path="400" rankBy="radius" sequenceIndex="3"/>
+
+	<CellLocation id="pe0" path="500" rankBy="radius" sequenceIndex="0"/>
+
+
+	<VoltageRecorder at="1"/>
+
+	<VoltageRecorder location="pa0"/>
+	<VoltageRecorder location="pa1"/>
+	<VoltageRecorder location="pa2"/>
+
+	<VoltageRecorder location="pb0"/>
+	<VoltageRecorder location="pb1"/>
+	<VoltageRecorder location="pb2"/>
+
+	<VoltageRecorder location="pc0"/>
+	<VoltageRecorder location="pc1"/>
+	<VoltageRecorder location="pc2"/>
+	<VoltageRecorder location="pc3"/>
+
+	<VoltageRecorder location="pd0"/>
+	<VoltageRecorder location="pd1"/>
+	<VoltageRecorder location="pd2"/>
+	<VoltageRecorder location="pd3"/>
+
+	<VoltageRecorder location="pe0"/>
+    
+</Access>

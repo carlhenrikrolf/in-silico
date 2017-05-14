@@ -1,0 +1,52 @@
+<PSICSRun timeStep="0.01ms" runTime="25ms" startPotential="-65mV"
+	morphology="cell"
+	environment="environment"
+	properties="membrane"
+	access="recording"
+	stochThreshold="1000"
+	repeats="1000">
+	<StructureDiscretization baseElementSize="3um"/>
+
+<RunSet vary="napop:density" values="[4]per_um2"
+                filepattern="out-$">
+	</RunSet>
+
+
+
+<About>
+ Modified from the example voltage clamp with stochastic channels. The density of channels in the model is 4 per square micron.  Each case is run 400 times of which ten are
+  shown in the default plots. The mean variance analysis is set below. The form
+  should be a parabola, with the slope at the origin giving the single channel
+  conductance and the intercept on the X axis the total number of channels.
+ </About>
+
+
+
+	<ViewConfig>
+		<LineGraph width="500" height="400">
+		<XAxis min="0" max="25" label="time / ms"/>
+		<YAxis min="-80" max="60" label="current / nA"/>
+
+		<LineSet file="out-4.txt" color="orange" maxshow="20"/>
+
+
+		 <View id="whole" xmin="0." xmax="25." ymin="-80." ymax="25."/>
+		</LineGraph>
+
+
+		<LineGraph>
+			<XAxis label="mean current, nA"/>
+			<YAxis label="current variance, nA^2"/>
+
+			 	<MeanVariance file="out-4.txt" tmin="5" tmax="5.5" binSize="2" color="orange"/>
+			 	<MeanVariance file="out-4.txt" tmin="5.5" tmax="15" binSize="10" color="blue"/>
+
+
+	            <View id="mvwhole" xmin="0" xmax="80" ymin = "0." ymax="50"/>
+		</LineGraph>
+
+
+	</ViewConfig>
+
+
+</PSICSRun>

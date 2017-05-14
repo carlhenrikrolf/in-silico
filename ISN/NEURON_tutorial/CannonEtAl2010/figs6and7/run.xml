@@ -1,0 +1,29 @@
+<PSICSRun   timeStep="0.01ms" runTime="1s" startPotential="-60mV"
+	environment="environment"
+	properties="membranefast"
+	access="recordingg0699P1"
+	stochThreshold="100000"
+	quickChannels="false"
+	morphology="g0699P1"
+	repeats="1">
+		
+	<StructureDiscretization baseElementSize="5um"/>
+	<info>Channel noise in dendrites. Figure 7 from Cannon et al, PLoS Comp Biol (2010)</info>
+
+<ChannelStochThreshold channel="leak-nafast" threshold="10000"/>
+<ChannelStochThreshold channel="leak-kfast" threshold="10000"/>
+
+	
+	<ViewConfig>
+		<LineGraph width="500" height="400">
+		<XAxis min="0" max="100" label="time / ms"/>
+		<YAxis min="-80" max="60" label="potential / mV"/>
+
+		<Line file="psics-out.txt" show="1" color="#ffffff"/>
+
+		<View id="whole" xmin="-10." xmax="3010." ymin="-75." ymax="-45."/>
+		<View id="zoom10ms"   xmin="100." xmax="110" ymin="-75." ymax="-45."/>
+		</LineGraph>
+	</ViewConfig>
+
+</PSICSRun>

@@ -1,0 +1,13 @@
+<Activity id="activity">
+
+
+	<AfferentEvents population="synpop">	
+		<PoissonGenerator frequency="5.5Hz" seed="102"/>
+	</AfferentEvents>
+	
+		<!--<AfferentEvents population="synpopsoma">	
+		<PoissonGenerator frequency="9Hz" seed="555"/>	
+	</AfferentEvents>-->
+	
+	
+</Activity>

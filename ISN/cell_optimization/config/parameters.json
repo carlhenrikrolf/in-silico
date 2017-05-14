@@ -1,0 +1,167 @@
+[
+    {
+        "param_name": "g_pas",
+        "sectionlist": "all",
+        "type": "section",
+        "dist_type": "uniform",
+        "value": 3e-05
+    },
+    {
+        "param_name": "e_pas",
+        "sectionlist": "all",
+        "type": "section",
+        "dist_type": "uniform",
+        "value": -75
+    },
+    {
+        "param_name": "cm",
+        "sectionlist": "all",
+        "type": "section",
+        "dist_type": "uniform",
+        "value": 1
+    },
+    {
+        "param_name": "Ra",
+        "sectionlist": "all",
+        "type": "section",
+        "dist_type": "uniform",
+        "value": 100
+    },
+    {
+        "param_name": "v_init",
+        "type": "global",
+        "value": -65
+    },
+    {
+        "param_name": "celsius",
+        "type": "global",
+        "value": 34
+    },
+    {
+        "param_name": "ena",
+        "sectionlist": "somatic",
+        "type": "section",
+        "dist_type": "uniform",
+        "value": 50
+    },
+    {
+        "param_name": "ek",
+        "sectionlist": "somatic",
+        "type": "section",
+        "dist_type": "uniform",
+        "value": -85
+    },
+    {
+        "param_name": "ghdbar_hd",
+        "mech": "hd",
+        "bounds": [
+            0,
+            1
+        ],
+        "dist_type": "uniform",
+        "mech_param": "ghdbar",
+        "type": "range",
+        "sectionlist": "somatic"
+    },
+    {
+        "param_name": "gcalbar_cachan",
+        "mech": "cachan",
+	"value": 216.0e-6,
+        "dist_type": "uniform",
+        "mech_param": "gcalbar",
+        "type": "range",
+        "sectionlist": "somatic"
+    },
+{
+        "param_name": "gcanbar_cachan",
+        "mech": "cachan",
+	"value": 171.0e-6,
+        "dist_type": "uniform",
+        "mech_param": "gcanbar",
+        "type": "range",
+        "sectionlist": "somatic"
+    },
+{
+        "param_name": "gcatbar_cachan",
+        "mech": "cachan",
+	"value": 1044.0e-6,
+        "dist_type": "uniform",
+        "mech_param": "gcatbar",
+        "type": "range",
+        "sectionlist": "somatic"
+    },
+    {
+        "param_name": "gCa_Ca_HVA",
+        "mech": "Ca_HVA",
+        "bounds": [
+            0,
+            0.1
+        ],
+        "dist_type": "uniform",
+        "mech_param": "gCa",
+        "type": "range",
+        "sectionlist": "somatic"
+    },
+    {
+        "param_name": "icapump_capump",
+        "mech": "capump",
+        "bounds": [
+            0,
+            0.01
+        ],
+        "dist_type": "uniform",
+        "mech_param": "icapump",
+        "type": "range",
+        "sectionlist": "somatic"
+    },
+    {
+        "param_name": "gnabar_hh3",
+        "mech": "hh3",
+        "bounds": [
+            0,
+            0.01
+        ],
+        "dist_type": "uniform",
+        "mech_param": "gnabar",
+        "type": "range",
+        "sectionlist": "somatic"
+    },
+{
+        "param_name": "gkhhbar_hh3",
+        "mech": "hh3",
+        "bounds": [
+            0,
+            0.01
+        ],
+        "dist_type": "uniform",
+        "mech_param": "gkhhbar",
+        "type": "range",
+        "sectionlist": "somatic"
+    },
+{
+        "param_name": "gkabar_hh3",
+        "mech": "hh3",
+        "bounds": [
+            0,
+            0.01
+        ],
+        "dist_type": "uniform",
+        "mech_param": "gkabar",
+        "type": "range",
+        "sectionlist": "somatic"
+    },
+    {
+        "param_name": "gkbar_kca",
+        "mech": "kca",
+        "bounds": [
+            0,
+            0.05
+        ],
+        "dist_type": "uniform",
+        "mech_param": "gkbar",
+        "type": "range",
+        "sectionlist": "somatic"
+    },
+    
+    
+]

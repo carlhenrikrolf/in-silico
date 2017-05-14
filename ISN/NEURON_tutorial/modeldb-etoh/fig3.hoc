@@ -1,0 +1,330 @@
+load_file("nrngui.hoc")
+
+soma_len= 25.0 
+soma_diam= 15.0
+ndend=4
+nbranch=2
+dend_diam= 1.5 
+prox_diam= 3.0 
+dend_len = 500.0
+prox_len = 150.0
+v_init = -56.621
+dt = 0.0032516  
+tstart = 0
+tstop = 20000
+ourgampa=0.0
+ourPnmda=0.0
+
+
+/* Ih Initial Parameters */
+ehd_hd = -30
+vh_hd = -95
+tc_hd = 350
+vhalft_hd = -112
+a0t_hd = 0.0016
+zetat_hd = 2.2
+gmt_hd = 0.9
+k_hd = 8
+//
+
+objref apc
+objref vect1
+vect1 = new Vector()
+
+create dummy,soma, prox[ndend], dend[nbranch*ndend]	
+global_ra = 400
+forall Ra = global_ra
+global_cm = 1.0
+forall cm = global_cm
+g_celsius = 35
+celsius = g_celsius
+forall ion_style("na_ion", 2,2,0,0,0)
+access soma			
+
+
+objref cvode
+objref ff
+objref vec1,vec2
+cvode = new CVode(1)   
+x= cvode.active(1)
+ff = new File()
+vec1 = new Vector(200001)
+ff.ropen("x1e0p9927-b.dat")
+n = vec1.scanf(ff, 200000)
+ff.close()
+ff = new File()
+vec2 = new Vector(200001)
+ff.ropen("x2e0p9927-b.dat")
+n = vec2.scanf(ff, 200000)
+ff.close()
+samplestep = 0.1
+objref tvec1,tvec2
+tvec1 = vec1.c.indgen(samplestep)
+tvec2 = vec2.c.indgen(samplestep)
+vec1.play(&ourgampa,tvec1,1)
+vec2.play(&ourPnmda,tvec2,1)
+
+proc init_cell() {
+
+
+/* First set all of the dimensions and insert the channels into each
+ * section. */
+forall {insert hd ghdbar_hd =0.0007}
+
+    dummy{
+      L=1
+      d=1
+    }
+    soma {
+	nseg = 1		
+	diam = soma_diam		
+	L = soma_len			
+            
+   apc = new APCount(0.5)
+   apc.thresh = -30
+   apc.record(vect1)   
+
+
+	{insert nabalan nainit_nabalan = 5.473444 f_nabalan = 4.0}
+        {insert hh3 gkabar_hh3 = 100.0e-6 gnabar_hh3=2500e-6 
+          miv_hh3 = 44.6 hiv_hh3 = 66.8 htv1_hh3 = 39.0 htv2_hh3 = 59.0}
+        {insert pump ipumpmax_pump = 0.0036}
+        {insert leak gcabar_leak = 0.6e-6 ggabaa_leak = 300.0e-6 }
+        {insert cabalan cainit_cabalan = 0.00020701223}
+        {insert cachan}
+        {insert kca gkbar_kca = 450.0e-6}
+        {insert capump}
+
+	pt3dclear()
+	pt3dadd(0,0,0,soma_diam)
+	pt3dadd(soma_len,0,0,soma_diam)
+
+    }
+
+    for i = 0, ndend-1 prox[i] {
+	nseg = 1	
+	L = prox_len			
+	      
+	{insert nabalan nainit_nabalan = 10.000871    f_nabalan = 1.0}
+	{insert hh3 gkabar_hh3 = 300.0e-6 gnabar_hh3=2500e-6 
+          miv_hh3 = 34.6 hiv_hh3 = 56.8 htv1_hh3 = 29.0 htv2_hh3 = 49.0}
+	{insert pump ipumpmax_pump = 0.0072}
+	{insert leak gcabar_leak = 0.0e-6 ggabaa_leak = 30.0e-6 }
+    {insert nmda}
+    {insert ampa ratio_ampa = 1}
+          
+forall cm = global_cm
+forall Ra = global_ra
+g_celsius = 35
+    }
+ 
+     for i = 0, ndend-1 prox[i] {
+      prox[i] for (x,0) { 
+        setpointer caisoma_nmda(x), soma.cai(0.5)
+        setpointer nmdasyn_nmda(x), ourPnmda 
+        setpointer ampasyn_ampa(x), ourgampa
+	  }
+        } 
+         
+      for i = 0, nbranch*ndend - 1 dend[i] {
+	nseg = 1	
+	L = dend_len - prox_len 			
+        
+	{insert nabalan nainit_nabalan = 8.3234185 f_nabalan = 1.0}
+	{insert hh3 gkabar_hh3 = 1000.0e-6 gnabar_hh3=2500e-6 
+           miv_hh3 = 26.6 hiv_hh3 = 48.8 htv1_hh3 = 21 htv2_hh3 = 41.0}
+        {insert pump ipumpmax_pump = 0.009}
+        {insert leak gcabar_leak = 0.0e-6 ggabaa_leak = 30.0e-6 }
+        {insert nmda}
+	{insert ampa ratio_ampa = 1}
+    
+forall cm = global_cm
+forall Ra = global_ra
+g_celsius = 35
+    }
+
+   for i = 0, nbranch*ndend - 1 dend[i] {
+      dend[i] for (x,0) { 
+        setpointer caisoma_nmda(x), soma.cai(0.5)
+        setpointer nmdasyn_nmda(x), ourPnmda
+		setpointer ampasyn_ampa(x), ourgampa  
+					    }
+          }
+//
+   
+/* Construct the topology by connecting each of the sections together. */
+    connect soma(0),dummy(1)
+    connect prox[0](0),soma(0)
+    connect prox[1](0), soma(1)
+    connect prox[2](0), soma(0.5)
+    connect prox[3](0), soma(0.5) 
+    for j = 0, ndend-1 {
+    for i = 0, nbranch-1 {
+    connect dend[j+i*ndend](0), prox[j](1)}}
+
+        dummy{
+	pt3dclear()
+	pt3dadd(0.5*soma_len,0,1,1)
+	pt3dadd(0.5*soma_len,0,0,1)
+               }
+        prox[0]{
+	pt3dclear() 
+	pt3dadd(0,0,0,prox_diam)
+	pt3dadd(-prox_len,0,0,prox_diam)
+               }
+        dend[0]{
+	pt3dclear() 
+	pt3dadd(-prox_len,0,0,dend_diam)
+	pt3dadd(-dend_len,0,0,dend_diam)
+               }
+        if(nbranch==2) dend[4]{
+	pt3dclear() 
+	pt3dadd(-prox_len,0,0,dend_diam)
+	pt3dadd(-prox_len,dend_len-prox_len,0,dend_diam)
+               }
+        prox[1]{
+	pt3dclear() 
+	pt3dadd(soma_len,0,0,prox_diam)
+	pt3dadd(soma_len+prox_len,0,0,prox_diam)
+               }
+        dend[1]{
+	pt3dclear() 
+	pt3dadd(soma_len+prox_len,0,0,dend_diam)
+	pt3dadd(soma_len+dend_len,0,0,dend_diam)
+               }
+        if(nbranch==2) dend[5]{
+	pt3dclear() 
+	pt3dadd(soma_len+prox_len,0,0,dend_diam)
+	pt3dadd(soma_len+prox_len,prox_len-dend_len,0,dend_diam)
+               }
+        prox[2]{
+	pt3dclear() 
+	pt3dadd(0,soma_diam/2,0,prox_diam)
+	pt3dadd(0,(soma_diam/2 + prox_len),0,prox_diam)
+               }
+        dend[2]{
+	pt3dclear() 
+	pt3dadd(0,(soma_diam/2 + prox_len),0,dend_diam)
+	pt3dadd(0,soma_diam/2 + dend_len,0,dend_diam)
+               }
+        if(nbranch==2) dend[6]{
+	pt3dclear() 
+	pt3dadd(0,(soma_diam/2 + prox_len),0,dend_diam)
+	pt3dadd(dend_len-prox_len,soma_diam/2 + prox_len,0,dend_diam)
+               }
+        prox[3]{
+	pt3dclear() 
+	pt3dadd(0,-soma_diam/2,0,prox_diam)
+	pt3dadd(0,(-soma_diam/2 - prox_len),0,prox_diam)
+               }
+        dend[3]{
+	pt3dclear() 
+	pt3dadd(0,-soma_diam/2 - prox_len,0,dend_diam)
+	pt3dadd(0,-soma_diam/2 - dend_len,0,dend_diam)
+               }
+        if(nbranch==2) dend[7]{
+	pt3dclear() 
+	pt3dadd(0,-soma_diam/2 - prox_len,0,dend_diam)
+	pt3dadd(prox_len-dend_len,-soma_diam/2 - prox_len,0,dend_diam)
+               }
+}
+
+topology()
+//
+
+init_cell()		
+
+/* Create the sinapses for Dopamin Simulation */ 
+objref nc, syni, syni2, nc2
+create acell
+acell {
+syni = new dopnet(.5)
+syni.vmax=5*1e-3
+syni2 = new dopnet(.5)
+syni2.vmax=0.5*1e-3
+      }
+nc = new NetCon(&v(.5), syni, -20, 0, 0.16)
+nc2 = new NetCon(&v(.5), syni2, -20, 0, 0.022)
+//
+
+
+
+proc init() {local i
+   		finitialize(v_init)
+        fcurrent()
+		t = tstart
+}
+
+init()
+
+
+load_file("damodel3.ses")
+
+
+proc advance() {
+	fadvance()
+	 if(vect1.size()>compare) {
+	  Graph[0].mark(vect1.x[compare],yy,"|",5,cc,1) 
+	  Graph[0].flush()	
+	  compare = compare + 1
+	 }
+		
+}
+
+/* Declaration of the Procedures (Control, 50mM, 100mM) */
+proc control() {
+ forall {
+ if(ismembrane("hd")) {
+ ghdbar_hd =0.0007
+ vh_hd = -95
+ a0t_hd=0.0016
+ k_hd=8
+ yy=1.3
+ cc=1
+					  }
+		}
+Graph[0].addexpr("syni2.dop", 1, 1, 2.99, 2.99, 2)	
+vect1.resize(0)
+compare=0
+run()
+}	
+
+
+proc etohh() {
+forall {
+ if(ismembrane("hd")) {
+ ghdbar_hd =0.000735
+ vh_hd = -93
+ a0t_hd=0.0019
+ k_hd=9
+ yy=1.2
+ cc=3
+ 					  }
+	   }
+Graph[0].addexpr("syni2.dop", 3, 1, 2.99, 2.99, 2)
+vect1.resize(0)
+compare=0
+run()
+}
+
+
+proc etoh() {
+forall {
+ if(ismembrane("hd")) {
+ ghdbar_hd =0.00077
+ vh_hd = -91
+ a0t_hd=0.0022
+ k_hd=10
+ yy=1.1
+ cc=2
+ 					  }
+	  }
+Graph[0].addexpr("syni2.dop", 2, 1, 2.99, 2.99, 2)
+vect1.resize(0)
+compare=0
+run()
+}	
+
+
+	
+

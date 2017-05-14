@@ -1,0 +1,5 @@
+<KSChannel id="leak-naslow" gSingle="20pS" permeantIon="Na">
+	<OpenState id="o1"/>
+	<ClosedState id="c1"/>
+	<FixedRateTransition from="o1" to="c1" forward="0.03per_ms" reverse="0.07per_ms"/>
+</KSChannel>

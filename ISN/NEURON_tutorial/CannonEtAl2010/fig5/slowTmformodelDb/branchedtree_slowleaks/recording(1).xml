@@ -1,0 +1,19 @@
+
+<Access id="recording">
+	
+	<CurrentClamp at="p0" lineColor="red" hold="0nA">
+		 	
+	</CurrentClamp>
+
+   <VoltageRecorder at="p1" lineColor="blue"/>  
+   <VoltageRecorder at="p2" lineColor="blue"/>  
+   <VoltageRecorder at="p4" lineColor="blue"/>  
+   <VoltageRecorder at="p8" lineColor="blue"/>  
+   <VoltageRecorder at="p16" lineColor="blue"/>  
+   <VoltageRecorder at="p32" lineColor="blue"/>  
+   <VoltageRecorder at="p64" lineColor="blue"/>  
+   <VoltageRecorder at="p128" lineColor="blue"/>  
+   <VoltageRecorder at="p256" lineColor="blue"/>  
+   <VoltageRecorder at="p512" lineColor="blue"/>  
+
+</Access>

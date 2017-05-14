@@ -1,0 +1,36 @@
+<CellProperties id="membraneslow" membraneCapacitance="1.5uF_per_cm2"
+    cytoplasmResistivity="150.0ohm_cm">
+
+	<PassiveProperties region="soma" membraneCapacitance="0.75uF_per_cm2"/>
+
+
+	<ChannelPopulation id="NaMS" channel="NaMS" color="0xff4040" density="1"/>
+	<ChannelPopulation id="KmMS" channel="KmMS" color="0x33ccff" density="0.05"/>
+	<ChannelPopulation id="CaMS" channel="CaMS" color="0x66ff33" density="0.15"/>
+	<ChannelPopulation id="leak-naslow" channel="leak-naslow" color="0xffff00" density="0.0083"/>
+	<ChannelPopulation id="leak-kslow" channel="leak-kslow" color="0xff33cc" density="0.0083"/>
+	
+	<ChannelPopulation id="NaMS_dend" channel="NaMS" color="0xff33cc" density="1per_um2">
+		<RegionMask action="exclude" where="region=soma"/>
+	</ChannelPopulation>
+	
+	<ChannelPopulation id="KmMS_dend" channel="KmMS" color="0xff33cc" density="0.05per_um2">
+		<RegionMask action="exclude" where="region=soma"/>
+	</ChannelPopulation>
+	
+	<ChannelPopulation id="CaMS_dend" channel="CaMS" color="0xff33cc" density="0.15per_um2">
+		<RegionMask action="exclude" where="region=soma"/>
+	</ChannelPopulation>
+	
+	<ChannelPopulation id="leak-na_dendslow" channel="leak-naslow" color="0xff33cc" density="0.0083per_um2">
+		<RegionMask action="exclude" where="region=soma"/>
+	</ChannelPopulation>
+	
+	<ChannelPopulation id="leak-k_dendslow" channel="leak-kslow" color="0xff33cc" density="0.0083per_um2">
+		<RegionMask action="exclude" where="region=soma"/>
+	</ChannelPopulation>
+
+
+	<DensityAdjustment maintain="-60mV" vary="leak-naslow, leak-kslow"/>
+	
+</CellProperties>

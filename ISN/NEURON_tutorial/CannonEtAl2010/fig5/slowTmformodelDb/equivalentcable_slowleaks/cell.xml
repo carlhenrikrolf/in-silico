@@ -1,0 +1,13 @@
+<CellMorphology id="cell">
+	<Point id="p0" x="0" y="0" z="0" r="8"/>
+	<Point parent="p0" id="p1" x="32" y="0" z = "0" r="8"/>
+	<Point parent="p1" id="p2" x="64" y="0" z = "0" r="8"/>
+	<Point parent="p2" id="p3" x="96" y="0" z = "0" r="8"/>
+	<Point parent="p3" id="p4" x="128" y="0" z = "0" r="8"/>
+	<Point parent="p4" id="p5" x="160" y="0" z = "0" r="8"/>
+	<Point parent="p5" id="p6" x="192" y="0" z = "0" r="8"/>
+	<Point parent="p6" id="p7" x="224" y="0" z = "0" r="8"/>
+	<Point parent="p7" id="p8" x="256" y="0" z = "0" r="8"/>
+	<Point parent="p8" id="p9" x="288" y="0" z = "0" r="8"/>
+	<Point parent="p9" id="p10" x="320" y="0" z = "0" r="8"/>
+	</CellMorphology>

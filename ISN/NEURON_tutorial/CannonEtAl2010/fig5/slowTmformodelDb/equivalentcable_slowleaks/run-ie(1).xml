@@ -1,0 +1,31 @@
+<PSICSRun timeStep="0.1ms" runTime="1000ms" startPotential="-65mV"
+	method="implicit_euler"
+	morphology="cell"
+	environment="environment"
+	properties="membrane"
+	access="recording"
+	stochThreshold="100000">
+	<StructureDiscretization baseElementSize="10um" merge="false"/>
+
+
+  	<info>Regular branched cable with 9 levels of branching (512 terminals) varying timestep</info>
+
+	<ViewConfig>
+		<LineGraph width="500" height="400">
+		<XAxis min="0" max="1000" label="time / ms"/>
+		<YAxis min="-70" max="60" label="potential / mV"/>
+
+
+
+		<LineSet file="psics-out.txt" color="red" label="500" show="1"/>
+		<LineSet file="psics-out.txt" color="blue" label="500" show="10"/>
+
+
+		<View id="whole" xmin="0." xmax="1000." ymin="-80." ymax="40."/>
+		<View id="zoom" xmin="700." xmax="800." ymin="-70." ymax="-60."/>
+
+		</LineGraph>
+	</ViewConfig>
+
+
+</PSICSRun>

@@ -1,0 +1,6 @@
+
+<KSChannel id="Kleak" gSingle="20pS" permeantIon="K">
+	<OpenState id="o1"/>
+	<ClosedState id="c1"/>
+	<FixedRateTransition from="o1" to="c1" forward="0.03per_ms" reverse="0.07per_ms"/>
+</KSChannel>

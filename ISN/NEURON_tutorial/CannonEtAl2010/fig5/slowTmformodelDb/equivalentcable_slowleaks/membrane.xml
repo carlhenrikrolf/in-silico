@@ -1,0 +1,8 @@
+<CellProperties id="membrane" membraneCapacitance="100.0uF_per_cm2"
+    cytoplasmResistivity="100.0ohm_cm">
+   <ChannelPopulation id="Kleak_0" channel="Kleak" color="0x3333ff" density="23"
+       allocation="Regular" seed="606125"/>
+   <ChannelPopulation id="Naleak_0" channel="Naleak" color="0xff4040" density="5"
+       allocation="Regular" seed="813517"/>
+</CellProperties>
+

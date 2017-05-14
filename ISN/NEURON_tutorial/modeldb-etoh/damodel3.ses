@@ -1,0 +1,31 @@
+{load_file("nrngui.hoc")}
+objectvar save_window_, rvp_
+objectvar scene_vector_[3]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+{
+xpanel("Simulation", 0)
+xbutton("Control","control()")
+xbutton("50mM","etohh()")
+xbutton("100mM","etoh()")
+t = 0
+xvalue("t","t", 2 )
+xbutton("Stop","stoprun=1")
+xpanel(6,553)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,20000,0,1.5)
+scene_vector_[2] = save_window_
+{save_window_.view(0, 0, 20000, 1.5, 3, 115, 756.9, 279.1)}
+graphList[0].append(save_window_)
+save_window_.save_name("graphList[0].")
+save_window_.label(0.4, 0.92, " Dopamine Level - Slow Decay", 2, 1, 0, 0, 1)
+save_window_.label(0.918274, 0.786468, "Control", 2, 1, 0, 0, 1)
+save_window_.label(0.919543, 0.731423, "50mM", 2, 1, 0, 0, 3)
+save_window_.label(0.917005, 0.676376, "100mM", 2, 1, 0, 0, 2)
+save_window_.exec_menu("Keep Lines")
+}
+objectvar scene_vector_[1]
+{doNotify()}

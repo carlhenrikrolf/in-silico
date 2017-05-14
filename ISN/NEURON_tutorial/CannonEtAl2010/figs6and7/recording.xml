@@ -1,0 +1,30 @@
+
+<Access id="recording" saveInterval="0.1ms">
+
+	<!--<CellLocation id="p1" path="100" rankBy="radius" sequenceFraction="1"/>
+	<CellLocation id="p2" path="200" rankBy="radius" sequenceFraction="1"/>
+	<CellLocation id="p3" path="300" rankBy="radius" sequenceFraction="1"/>
+	<CellLocation id="p4" path="400" rankBy="radius" sequenceFraction="1"/>
+	<CellLocation id="p5" path="500" rankBy="radius" sequenceFraction="1"/>
+	<CellLocation id="p6" path="600" rankBy="radius" sequenceFraction="1"/>
+	<CellLocation id="p7" path="700" rankBy="radius" sequenceFraction="1"/>
+	<CellLocation id="p8" path="800" rankBy="radius" sequenceFraction="0.5"/>
+	<CellLocation id="p9" path="900" rankBy="radius" sequenceFraction="0.5"/>
+	<CellLocation id="p10" path="1000" rankBy="radius" sequenceFraction="0.5"/>-->
+
+	<VoltageRecorder at="1" lineColor="blue"/>
+	<!--<VoltageRecorder location="p1" lineColor="blue"/>
+	<VoltageRecorder location="p2" lineColor="blue"/>
+	<VoltageRecorder location="p3" lineColor="blue"/>
+	<VoltageRecorder location="p4" lineColor="blue"/>
+	<VoltageRecorder location="p5" lineColor="blue"/>
+	<VoltageRecorder location="p6" lineColor="blue"/>
+	<VoltageRecorder location="p7" lineColor="blue"/>
+	<VoltageRecorder location="p8"/>
+	<VoltageRecorder location="p9"/>
+	<VoltageRecorder location="p10"/>-->
+
+	<CurrentClamp at="1" hold="10pA"/>
+
+    
+</Access>

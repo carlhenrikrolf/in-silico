@@ -1,0 +1,24 @@
+
+<Access id="recordri06dend" saveInterval="0.1ms">
+
+	<!-- soma -->
+	<VoltageRecorder at="1"/>
+
+	<!-- apical dendrite proximal, mid and distal -->
+	<VoltageRecorder at="2124"/>
+	<VoltageRecorder at="3381"/>
+	<VoltageRecorder at="4290"/>
+
+	<!-- basal dendrites, proximal -->
+	<VoltageRecorder at="1586"/>
+	<VoltageRecorder at="1423"/>
+	<VoltageRecorder at="568"/>
+	<VoltageRecorder at="1801"/>
+	<VoltageRecorder at="38"/>
+	<VoltageRecorder at="592"/>
+	<VoltageRecorder at="1127"/>
+
+	<!-- axon initial segment -->
+	<VoltageRecorder at="562"/>
+
+</Access>
